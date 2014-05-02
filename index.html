@@ -18,18 +18,28 @@
 
   <script>
 
+    $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+      options.url = 'http://backbonejs-beginner.herokuapp.com' + options.url;
+    });
+
 
     //Creating a collection of Patients
-    var Patients = Backbone.Collection.extend({
-      url: '/patients'
+    var Users = Backbone.Collection.extend({
+      url: '/users'
     });
 
 
     // Backbone view that renders patient list content to page
-    var PatientList = Backbone.View.extend({
+    var UserList = Backbone.View.extend({
       el: '.page',
       render: function() {
-        this.$el.html('content should show here');
+        var that = this;
+        var users = new Users();
+        users.fetch({
+          success: function() {
+            that.$el.html('content should show here');
+          }
+        })
       }
     });
 
@@ -41,11 +51,11 @@
       }
     });
 
-    var patientList = new PatientList();
+    var userList = new UserList();
 
     var router = new Router();
     router.on('route:home', function() {  // Loading home page will trigger this route
-      patientList.render();
+      userList.render();
     });
 
     Backbone.history.start();
