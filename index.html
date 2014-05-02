@@ -17,14 +17,35 @@
   </div>
 
   <script>
+
+
+    //Creating a collection of Patients
+    var Patients = Backbone.Collection.extend({
+      url: '/patients'
+    });
+
+
+    // Backbone view that renders patient list content to page
+    var PatientList = Backbone.View.extend({
+      el: '.page',
+      render: function() {
+        this.$el.html('content should show here');
+      }
+    });
+
+
+    // Creating a home router
     var Router = Backbone.Router.extend({
       routes: {
         '': 'home'
       }
     });
+
+    var patientList = new PatientList();
+
     var router = new Router();
-    router.on('route:home', function() {
-      console.log("We have loaded the home page")
+    router.on('route:home', function() {  // Loading home page will trigger this route
+      patientList.render();
     });
 
     Backbone.history.start();
