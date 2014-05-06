@@ -17,7 +17,7 @@
   </div>
 
   <script type="text/template" id="user-list-template">
-  <a href="#/new" class="btn brn-primary">New User</a>
+  <a href="#/new" class="btn brn-primary">New Patient</a>
   </hr>
     <table class= "table striped">
       <thead>
@@ -67,7 +67,7 @@
     
   <script>
 
-    // Cannot get to work on localhost so using below snippit from tutorial. Think this may be the reason I cannot add D.O.B and Note to the user.
+    // Cannot get to work on localhost so using below snippit from tutorial for server as wanted to move on. Think this may be the reason I cannot add D.O.B and Note to the user.
     $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
       options.url = 'http://backbonejs-beginner.herokuapp.com' + options.url;
     });
